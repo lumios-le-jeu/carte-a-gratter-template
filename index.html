@@ -29,22 +29,22 @@
     const foregroundImg = new Image();
     const backgroundImg = new Image();
 
-    // Utiliser les URLs configurées pour les images de grattage et de fond
-    foregroundImg.src = 'PLACEHOLDER_GRATTE_IMG';  // Image de grattage
-    backgroundImg.src = 'PLACEHOLDER_BACKGROUND_IMG';  // Image de fond
+    // Utiliser l'image de fond et l'image de grattage
+    foregroundImg.src = './gratte.JPG';  // Image de grattage
+    backgroundImg.src = './bon.JPG';     // Image de fond
 
-    // Charger l'image de fond
+    // Dessiner l'image de fond en premier
     backgroundImg.onload = () => {
         bgCtx.drawImage(backgroundImg, 0, 0, backgroundCanvas.width, backgroundCanvas.height);
     };
 
-    // Charger l'image de grattage et configurer la couche pour masquer
+    // Dessiner l'image de grattage par-dessus
     foregroundImg.onload = () => {
         scratchCtx.drawImage(foregroundImg, 0, 0, scratchCanvas.width, scratchCanvas.height);
-        scratchCtx.globalCompositeOperation = 'destination-out';  // Mode pour effacer le premier plan
+        scratchCtx.globalCompositeOperation = 'destination-out';  // Rendre la zone grattée transparente
     };
 
-    // Fonction de grattage
+    // Fonction pour gratter
     function scratch(event) {
         const rect = scratchCanvas.getBoundingClientRect();
         const x = event.clientX - rect.left;
@@ -55,7 +55,6 @@
         scratchCtx.fill();
     }
 
-    // Ajouter des événements pour gratter en maintenant et en déplaçant la souris
     scratchCanvas.addEventListener('mousedown', (e) => {
         scratchCanvas.addEventListener('mousemove', scratch);
         scratch(e);
