@@ -29,8 +29,9 @@
     const foregroundImg = new Image();
     const backgroundImg = new Image();
 
-    foregroundImg.src = './gratte.JPG';  // Image de grattage
-    backgroundImg.src = './bon.JPG';     // Image de fond
+    // Utiliser des variables de remplacement pour les images
+    foregroundImg.src = 'PLACEHOLDER_GRATTE_IMG';  // Image de grattage
+    backgroundImg.src = 'PLACEHOLDER_BACKGROUND_IMG';  // Image de fond
 
     backgroundImg.onload = () => {
         bgCtx.drawImage(backgroundImg, 0, 0, backgroundCanvas.width, backgroundCanvas.height);
